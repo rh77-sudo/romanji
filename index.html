@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Romaji</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,480&family=Shippori+Mincho:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="desk">
+      <div class="lamp" aria-hidden="true"></div>
+      <main class="app">
+        <header class="header">
+          <p class="seal">朗</p>
+          <div>
+            <h1>Romaji</h1>
+            <p class="lede">Paste Japanese. Read it aloud.</p>
+          </div>
+        </header>
+
+        <form id="convert-form" class="composer paper">
+          <label class="sr-only" for="source">Japanese text</label>
+          <textarea
+            id="source"
+            name="source"
+            rows="5"
+            placeholder="私は学生です"
+            spellcheck="false"
+            disabled
+          ></textarea>
+          <button type="submit" id="convert-btn" disabled>Convert</button>
+        </form>
+
+        <p id="status" class="status" role="status">Loading dictionary…</p>
+
+        <section class="panel paper" aria-labelledby="furigana-heading">
+          <div class="panel-bar">
+            <h2 id="furigana-heading">Furigana</h2>
+            <button type="button" id="copy-furigana" class="copy" disabled>Copy</button>
+          </div>
+          <div id="furigana-out" class="reading" lang="ja"></div>
+        </section>
+
+        <section class="panel paper" aria-labelledby="romaji-heading">
+          <div class="panel-bar">
+            <h2 id="romaji-heading">Romaji</h2>
+            <button type="button" id="copy-romaji" class="copy" disabled>Copy</button>
+          </div>
+          <p id="romaji-out" class="romaji"></p>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

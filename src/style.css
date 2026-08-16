@@ -1,0 +1,327 @@
+:root {
+  color-scheme: dark;
+  --desk: #10161f;
+  --desk-deep: #080b11;
+  --lamp: #f0c27a;
+  --lamp-soft: rgba(240, 194, 122, 0.22);
+  --paper: #f3e6cc;
+  --paper-edge: #e4d2ae;
+  --ink: #241c14;
+  --ink-soft: #5b4d3d;
+  --vermillion: #c4452f;
+  --vermillion-deep: #8f2c1c;
+  --rule: rgba(36, 28, 20, 0.12);
+  --display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --jp: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--paper);
+  font-family: var(--jp);
+  background: var(--desk-deep);
+}
+
+.desk {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 640px at 50% -10%, var(--lamp-soft), transparent 58%),
+    radial-gradient(80% 50% at 50% 100%, rgba(8, 11, 17, 0.9), transparent 70%),
+    linear-gradient(180deg, #182030 0%, var(--desk) 42%, var(--desk-deep) 100%);
+}
+
+.desk::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.lamp {
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  width: 18rem;
+  height: 18rem;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255, 221, 160, 0.55) 0%, transparent 68%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.15rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.25rem 0.35rem 0.75rem;
+}
+
+.seal {
+  margin: 0;
+  width: 3.1rem;
+  height: 3.1rem;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--vermillion);
+  color: var(--vermillion);
+  font-family: var(--jp);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  transform: rotate(-8deg);
+  box-shadow: inset 0 0 0 1px rgba(196, 69, 47, 0.35);
+}
+
+.header h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-optical-sizing: auto;
+  font-size: clamp(2.4rem, 8vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  color: #f7edd8;
+}
+
+.lede {
+  margin: 0.4rem 0 0;
+  color: #c9b89a;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.paper {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 18%),
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      var(--rule) 31px,
+      var(--rule) 32px
+    ),
+    var(--paper);
+  color: var(--ink);
+  border-radius: 3px 4px 3px 3px;
+  box-shadow:
+    0 1px 0 rgba(255, 248, 232, 0.5) inset,
+    0 18px 40px rgba(0, 0, 0, 0.35),
+    0 2px 0 var(--paper-edge);
+}
+
+.composer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.1rem 1.1rem 1rem;
+}
+
+textarea,
+button {
+  font: inherit;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 8rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--jp);
+  font-size: 1.25rem;
+  line-height: 2;
+  padding: 0.15rem 0.15rem 0;
+}
+
+textarea::placeholder {
+  color: rgba(91, 77, 61, 0.45);
+}
+
+textarea:focus {
+  outline: none;
+}
+
+textarea:disabled {
+  opacity: 0.55;
+}
+
+#convert-btn {
+  align-self: flex-end;
+  min-width: 6.5rem;
+  padding: 0.55rem 1rem 0.45rem;
+  border: 2px solid var(--vermillion);
+  background: var(--vermillion);
+  color: #fff6ea;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--vermillion-deep);
+}
+
+#convert-btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--vermillion-deep);
+}
+
+#convert-btn:disabled {
+  background: transparent;
+  color: #b08978;
+  border-color: #c9a090;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+#convert-btn:focus-visible,
+.copy:focus-visible {
+  outline: 2px solid var(--vermillion);
+  outline-offset: 3px;
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 0 0.2rem;
+  color: #d7c4a2;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 0.98rem;
+}
+
+.status[data-kind="error"] {
+  color: #ffb4a2;
+  font-style: normal;
+}
+
+.panel {
+  padding: 0.9rem 1.1rem 1.15rem;
+}
+
+.panel-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.panel-bar h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.copy {
+  border: 0;
+  background: transparent;
+  color: var(--vermillion);
+  font-family: var(--display);
+  font-size: 0.92rem;
+  font-style: italic;
+  cursor: pointer;
+  padding: 0.15rem 0.2rem;
+}
+
+.copy:disabled {
+  color: #b7a48a;
+  cursor: not-allowed;
+}
+
+.copy:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.reading {
+  min-height: 3.4rem;
+  font-size: 1.55rem;
+  line-height: 2.35;
+  font-weight: 600;
+}
+
+.reading:empty::before,
+.romaji:empty::before {
+  content: "—";
+  color: rgba(91, 77, 61, 0.35);
+  font-weight: 500;
+}
+
+.reading ruby {
+  ruby-position: over;
+}
+
+.reading rt {
+  font-size: 0.5em;
+  font-weight: 500;
+  color: var(--vermillion-deep);
+}
+
+.romaji {
+  margin: 0;
+  min-height: 1.7em;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 430px) {
+  .app {
+    padding: 1.4rem 0.8rem 3rem;
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .reading {
+    font-size: 1.3rem;
+  }
+
+  .romaji {
+    font-size: 1.15rem;
+  }
+}
