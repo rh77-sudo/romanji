@@ -33,18 +33,22 @@
             spellcheck="false"
             disabled
           ></textarea>
-          <button type="submit" id="convert-btn" disabled>Convert</button>
+          <div
+            id="furigana-out"
+            class="reading in-box"
+            lang="ja"
+            hidden
+            tabindex="0"
+            role="button"
+            aria-label="Converted Japanese with furigana. Activate to edit."
+          ></div>
+          <div class="composer-actions">
+            <button type="button" id="copy-furigana" class="copy" disabled>Copy</button>
+            <button type="submit" id="convert-btn" disabled>Convert</button>
+          </div>
         </form>
 
         <p id="status" class="status" role="status">Loading dictionary…</p>
-
-        <section class="panel paper" aria-labelledby="furigana-heading">
-          <div class="panel-bar">
-            <h2 id="furigana-heading">Furigana</h2>
-            <button type="button" id="copy-furigana" class="copy" disabled>Copy</button>
-          </div>
-          <div id="furigana-out" class="reading" lang="ja"></div>
-        </section>
 
         <section class="panel paper" aria-labelledby="romaji-heading">
           <div class="panel-bar">

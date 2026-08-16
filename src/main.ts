@@ -44,12 +44,24 @@ function syncConvertEnabled(): void {
   ui.convertBtn.disabled = ui.source.disabled || ui.source.value.trim() === "";
 }
 
+function showReading(on: boolean): void {
+  ui.form.classList.toggle("is-reading", on);
+  ui.furiganaOut.hidden = !on;
+  ui.source.hidden = on;
+}
+
 function setOutputs(furiganaHtml: string, romaji: string): void {
   ui.furiganaOut.innerHTML = furiganaHtml;
   ui.romajiOut.textContent = romaji;
   const hasOutput = furiganaHtml !== "" || romaji !== "";
   ui.copyFurigana.disabled = !hasOutput;
   ui.copyRomaji.disabled = !hasOutput;
+  showReading(furiganaHtml !== "");
+}
+
+function returnToEditor(): void {
+  showReading(false);
+  ui.source.focus();
 }
 
 async function flashCopied(button: HTMLButtonElement): Promise<void> {
@@ -77,6 +89,17 @@ async function boot(): Promise<void> {
 
 ui.source.addEventListener("input", () => {
   syncConvertEnabled();
+});
+
+ui.furiganaOut.addEventListener("click", () => {
+  returnToEditor();
+});
+
+ui.furiganaOut.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    returnToEditor();
+  }
 });
 
 ui.form.addEventListener("submit", async (event) => {

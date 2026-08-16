@@ -154,6 +154,13 @@ body {
   padding: 1.1rem 1.1rem 1rem;
 }
 
+.composer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.85rem;
+}
+
 textarea,
 button {
   font: inherit;
@@ -185,7 +192,6 @@ textarea:disabled {
 }
 
 #convert-btn {
-  align-self: flex-end;
   min-width: 6.5rem;
   padding: 0.55rem 1rem 0.45rem;
   border: 2px solid var(--vermillion);
@@ -281,7 +287,20 @@ textarea:disabled {
   font-weight: 600;
 }
 
-.reading:empty::before,
+.reading.in-box {
+  min-height: 8rem;
+  font-size: 1.25rem;
+  line-height: 2;
+  font-weight: 600;
+  padding: 0.15rem 0.15rem 0;
+  cursor: text;
+}
+
+.reading.in-box:focus-visible {
+  outline: 2px solid var(--vermillion);
+  outline-offset: 3px;
+}
+
 .romaji:empty::before {
   content: "—";
   color: rgba(91, 77, 61, 0.35);
